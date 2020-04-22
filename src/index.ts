@@ -2,14 +2,14 @@ import "reflect-metadata";
 import express from "express";
 import { routes } from "./routes";
 
-const port = process.env.port || 8080;
+const port: string | number = process.env.port || 8080;
 (async () => {
   const app = express();
   app.use(routes.router);
 
-//   app.get("/", (_, res) => {
-//     res.send("GET request to the homepage");
-//   });
+  //   app.get("/", (_, res) => {
+  //     res.send("GET request to the homepage");
+  //   });
 
   app.listen(port, () => console.log(`server runing on ${port}`));
 })();
