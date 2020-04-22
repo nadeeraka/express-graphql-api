@@ -1,21 +1,33 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
-import {User} from "./entity/User";
+import express from "express";
+import { routes } from "./routes";
 
-createConnection().then(async connection => {
+const port = process.env.port || 8080;
+(async () => {
+  const app = express();
+  app.use(routes.router);
 
-    console.log("Inserting a new user into the database...");
-    const user = new User();
-    user.firstName = "Timber";
-    user.lastName = "Saw";
-    user.age = 25;
-    await connection.manager.save(user);
-    console.log("Saved a new user with id: " + user.id);
+//   app.get("/", (_, res) => {
+//     res.send("GET request to the homepage");
+//   });
 
-    console.log("Loading users from the database...");
-    const users = await connection.manager.find(User);
-    console.log("Loaded users: ", users);
+  app.listen(port, () => console.log(`server runing on ${port}`));
+})();
 
-    console.log("Here you can setup and run express/koa/any other framework.");
+// createConnection().then(async connection => {
 
-}).catch(error => console.log(error));
+//     console.log("Inserting a new user into the database...");
+//     const user = new User();
+//     user.firstName = "Timber";
+//     user.lastName = "Saw";
+//     user.age = 25;
+//     await connection.manager.save(user);
+//     console.log("Saved a new user with id: " + user.id);
+
+//     console.log("Loading users from the database...");
+//     const users = await connection.manager.find(User);
+//     console.log("Loaded users: ", users);
+
+//     console.log("Here you can setup and run express/koa/any other framework.");
+
+// }).catch(error => console.log(error));
