@@ -1,18 +1,17 @@
 import "reflect-metadata";
 import express from "express";
 import { routes } from "./routes";
+import morgan from 'morgan'
 
 const port: string | number = process.env.port || 8080;
-(async () => {
+const init = async () => {
   const app = express();
-  app.use(routes.router);
+  await app.use(morgan('common'))
+  await app.use(routes.router);
 
-  //   app.get("/", (_, res) => {
-  //     res.send("GET request to the homepage");
-  //   });
-
-  app.listen(port, () => console.log(`server runing on ${port}`));
-})();
+  await app.listen(port, () => console.log(`server runing on ${port}`));
+};
+init();
 
 // createConnection().then(async connection => {
 
