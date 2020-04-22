@@ -1,9 +1,10 @@
 import express from "express";
 
 const router = express.Router();
+const gretings: string = "hello ";
 
 router.get("/", (_, res) => {
-  res.send("homepage");
+  res.send(gretings);
 });
 
 export const routes = {
