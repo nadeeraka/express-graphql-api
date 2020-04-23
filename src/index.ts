@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import {init} from './loders'
+import {init} from './boot'
 
 init();
 

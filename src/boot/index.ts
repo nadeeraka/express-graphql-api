@@ -6,8 +6,7 @@ import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import {ApolloServer} from 'apollo-server-express'
-import {apolloServer} from '../grphql'
-import {UserResolver} from '../grphql/resolvers/UserResolver'
+import {UserResolver} from '../graphql/resolvers/UserResolver'
 import {buildSchema} from 'type-graphql'
 
 const port: string | number = process.env.port || 8080;
