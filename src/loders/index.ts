@@ -5,6 +5,8 @@ import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
+import {ApolloServer} from 'apollo-server-express'
+import {apolloServer} from '../grphql'
 
 const port: string | number = process.env.port || 8080;
 export const init = async () => {
@@ -20,6 +22,7 @@ export const init = async () => {
 
   await app.use(routes.router);
 
+   apolloServer.applyMiddleware({app})
 
 
   await app.listen(port, () => console.log(`server runing on ${port}`));
