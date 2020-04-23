@@ -9,9 +9,10 @@ router.get("/", (_, res: any) => {
   });
 });
 
-router.get("/home", (_, res) => {
+router.get("/api", (_, res) => {
   res.send("home");
 });
+
 
 export const routes = {
   router,
