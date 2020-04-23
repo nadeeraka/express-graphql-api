@@ -5,10 +5,15 @@ import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
+import {ApolloServer} from 'apollo-server-express'
+import {apolloServer} from '../grphql'
+import {UserResolver} from '../grphql/resolvers/UserResolver'
+import {buildSchema} from 'type-graphql'
 
 const port: string | number = process.env.port || 8080;
+const app = express();
 export const init = async () => {
-  const app = express();
+  
   await app.use(morgan("common"));
   await app.use(bodyParser.urlencoded({ extended: false }));
   await app.use(
@@ -19,7 +24,16 @@ export const init = async () => {
   await app.use(helmet());
 
   await app.use(routes.router);
+  
 
+   const apolloServer:any = new ApolloServer({
+     
+      schema: await buildSchema({
+         resolvers: [UserResolver] 
+      })
+    })
+  
+   apolloServer.applyMiddleware({app})
 
 
   await app.listen(port, () => console.log(`server runing on ${port}`));
