@@ -1,17 +1,18 @@
 import express from "express";
 
 const router = express.Router();
-//const gretings: string = "hello ";
+const gretings: string = "hello ";
 
 router.get("/", (_, res: any) => {
   res.json({
-    message: "hello world",
+    message: gretings,
   });
 });
 
-router.get("/home", (_, res) => {
+router.get("/api", (_, res) => {
   res.send("home");
 });
+
 
 export const routes = {
   router,
