@@ -1,4 +1,9 @@
 import express from 'express'
+import morgan from "morgan";
+import cors from "cors";
+import helmet from "helmet";
+import bodyParser from "body-parser";
+import {routes} from '../routes'
 
 // custome
 
@@ -28,6 +33,20 @@ const app = express();
 // eslint-disable-next-line 
 
 
+ export const  bootMiddlewares = async ()=>
+{
 
+    await app.use(morgan("common"));
+    await app.use(bodyParser.urlencoded({ extended: false }));
+    await app.use(
+      cors({
+        origin: "http://localhost:3000",
+      })
+    );
+    await app.use(helmet());
+    
+    await app.use(routes.router);
+    
+}
 
   

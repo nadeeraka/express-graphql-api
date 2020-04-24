@@ -1,7 +1,14 @@
 import "reflect-metadata";
 import {init} from './boot'
 
-init();
+
+try {
+    init();
+    console.log('All systems runinig! ')
+} catch (error) {
+    console.error('Application is crashed'+ error)
+    
+}
 
 // createConnection().then(async connection => {
 

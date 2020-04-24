@@ -9,6 +9,7 @@ import {ApolloServer} from 'apollo-server-express'
 import {UserResolver} from '../graphql/resolvers/UserResolver'
 import {buildSchema} from 'type-graphql'
 import {loder} from '../util/loder'
+import {bootMiddlewares} from '../middlewares'
 
 const port: string | number = process.env.port || 8080;
 const app = express();
@@ -24,8 +25,8 @@ export const init = async () => {
   await app.use(helmet());
 
   await app.use(routes.router);
-  
 
+  //bootMiddlewares()
    const apolloServer:any = new ApolloServer({
      
       schema: await buildSchema({
