@@ -5,8 +5,7 @@
 // loop through expenses array and get the total expenses
 //priotize  expenses
 // find out useless expenses
-
-class Expenses {
+ export class Expenses {
   constructor(private _expenses: number[], private _income: number) {}
 
   set setExpenses(e: number[]) {
@@ -19,15 +18,7 @@ class Expenses {
     this._income = i;
   }
 
-  get setExpenses() {
-    return this._expenses;
-  }
-
-  get setIncome() {
-    return this._income;
-  }
-
-  calculateExpenses() {
+  calculateExpenses(): number {
     let count: number = 0;
 
     //   const count = this._expenses.reduce((a:number,b:number)=>a+b)
@@ -39,7 +30,15 @@ class Expenses {
     return count;
   }
 
-  setBasicGrade() {
+  get getExpenses(): number {
+    return this.calculateExpenses();
+  }
+
+  get setIncome() {
+    return this._income;
+  }
+
+  setBasicGrade(): number {
     if (this._income < this.calculateExpenses()) {
       return -1;
     } else if (this._income === this.calculateExpenses()) {
@@ -49,7 +48,7 @@ class Expenses {
     return this.setAdvanceGrade();
   }
 
-  setAdvanceGrade() {
+  setAdvanceGrade(): number {
     const rate: number = this._income / this.calculateExpenses();
     const actualRate: number = Math.floor(rate);
     return actualRate;
