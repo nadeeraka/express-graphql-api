@@ -5,7 +5,7 @@
 // loop through expenses array and get the total expenses
 //priotize  expenses
 // find out useless expenses
- export class Expenses {
+export class Expenses {
   constructor(private _expenses: number[], private _income: number) {}
 
   set setExpenses(e: number[]) {
@@ -54,5 +54,30 @@
     return actualRate;
   }
 
-  checkGrade() {}
+  getHighestExpenses(): number {
+    let sortArray: number[] = [];
+    const expenses = this._expenses;
+    let higher: number = 0;
+    // sort the expenses
+    for (let i = 0; i < expenses.length; i++) {
+      const ex = expenses[i];
+
+      if (ex > higher) {
+        higher = ex;
+      }
+    }
+    return higher;
+  }
+
+  getSortExpenses() {
+    const expenses = this._expenses;
+    //first harf
+    //other harf
+    // make two arrays
+    const middle = expenses.length / 2;
+
+    for (let i = 0; i < expenses.length; i++) {
+      const element = expenses[i];
+    }
+  }
 }
