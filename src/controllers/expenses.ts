@@ -43,11 +43,17 @@ class Expenses {
     if (this._income < this.calculateExpenses()) {
       return -1;
     } else if (this._income === this.calculateExpenses()) {
-      return 1;
+      return 0;
     }
 
-    return 0;
+    return this.setAdvanceGrade();
   }
 
-  setAdvanceGrade() {}
+  setAdvanceGrade() {
+    const rate: number = this._income / this.calculateExpenses();
+    const actualRate: number = Math.floor(rate);
+    return actualRate;
+  }
+
+  checkGrade() {}
 }
