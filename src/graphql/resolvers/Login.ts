@@ -33,7 +33,7 @@ export class Login {
     // login success
 
     return {
-      accessToken: sign({ userId: user.id }, SECRET_KEY),
+      accessToken: sign({ userId: user.id }, SECRET_KEY, { expiresIn: "15m" }),
     };
   }
 }
