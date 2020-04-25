@@ -30,9 +30,9 @@ export const init = async () => {
     schema: await buildSchema({
       resolvers: resolvers,
     }),
-    context:({req,res})=>({req,res})
+    context: ({ req, res }) => ({ req, res }),
   });
   apolloServer.applyMiddleware({ app });
 
-  await app.listen(port, () => logger(`server runing on ${port}`));
+  await app.listen(port, () => logger(`server running on ${port}`));
 };
