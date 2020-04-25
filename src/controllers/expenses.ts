@@ -1,3 +1,4 @@
+import { calculate, getHigherValue } from "../lib/util";
 // ! goal
 // give a  forecast for  given  expenses
 
@@ -19,15 +20,7 @@ export class Expenses {
   }
 
   calculateExpenses(): number {
-    let count: number = 0;
-
-    //   const count = this._expenses.reduce((a:number,b:number)=>a+b)
-    //   return count
-    for (let i = 0; i < this._expenses.length; i++) {
-      count += this._expenses[i];
-      console.log(count);
-    }
-    return count;
+    return calculate(this._expenses);
   }
 
   get getExpenses(): number {
@@ -55,29 +48,12 @@ export class Expenses {
   }
 
   getHighestExpenses(): number {
-    let sortArray: number[] = [];
-    const expenses = this._expenses;
-    let higher: number = 0;
-    // sort the expenses
-    for (let i = 0; i < expenses.length; i++) {
-      const ex = expenses[i];
-
-      if (ex > higher) {
-        higher = ex;
-      }
-    }
-    return higher;
+    return getHigherValue(this._expenses);
   }
 
-  getSortExpenses() {
-    const expenses = this._expenses;
-    //first harf
-    //other harf
-    // make two arrays
-    const middle = expenses.length / 2;
+  getSortExpenses(): number[] {
+    const sortArray = this._expenses.sort((a: number, b: number) => a - b);
 
-    for (let i = 0; i < expenses.length; i++) {
-      const element = expenses[i];
-    }
+    return sortArray;
   }
 }
