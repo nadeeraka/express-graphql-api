@@ -1,19 +1,16 @@
-import "reflect-metadata";
-import express from "express";
-import { routes } from "../routes";
-import morgan from "morgan";
-import cors from "cors";
-import helmet from "helmet";
-import bodyParser from "body-parser";
 import { ApolloServer } from "apollo-server-express";
-import { UserResolver } from "../graphql/resolvers/UserResolver";
+import bodyParser from "body-parser";
+import cors from "cors";
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import "reflect-metadata";
 import { buildSchema } from "type-graphql";
-import { loder } from "../util/loder";
-import { bootMiddlewares } from "../middlewares";
-import { createConnection } from "typeorm";
-import {dbConnect} from '../util/DButill'
-import {logger} from '../util/logger'
-import { Register} from '../graphql/resolvers/RegisterResolver'
+import { resolvers } from "../graphql/resolverConfig";
+import { routes } from "../routes";
+import { dbConnect } from "../util/DButill";
+import { logger } from "../util/logger";
+
 const port: string | number = process.env.port || 8080;
 const app = express();
 export const init = async () => {
@@ -26,15 +23,14 @@ export const init = async () => {
   );
   await app.use(helmet());
 
-  await dbConnect()
+  await dbConnect();
 
   await app.use(routes.router);
   const apolloServer: any = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, Register],
+      resolvers: resolvers,
     }),
   });
-
   apolloServer.applyMiddleware({ app });
 
   await app.listen(port, () => logger(`server runing on ${port}`));
