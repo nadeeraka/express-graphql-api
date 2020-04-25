@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { Resolver, Query, Mutation, Arg, Int } from "type-graphql";
 import { hash } from "bcryptjs";
 import { User } from "../../entity/User";
 import { logger } from "../../util/logger";
@@ -13,6 +13,8 @@ export class UserResolver {
   users(){
       return User.find()
   }
-
- 
+ @Query(()=>Int)
+ userCount(){
+   return User.count()
+ }
 }
