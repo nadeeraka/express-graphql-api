@@ -1,11 +1,13 @@
-import { calculate, getHigherValue } from "../lib/util";
-// ! goal
-// give a  forecast for  given  expenses
+import {
+  calculate,
+  getHigherValue,
+  sortedFirstN,
+  firstN,
+  getMinimum,
+  getSort,
+  getAverage
+} from "../lib/util";
 
-//  ! method
-// loop through expenses array and get the total expenses
-//priotize  expenses
-// find out useless expenses
 export class Expenses {
   constructor(private _expenses: number[], private _income: number) {}
 
@@ -55,5 +57,20 @@ export class Expenses {
     const sortArray = this._expenses.sort((a: number, b: number) => a - b);
 
     return sortArray;
+  }
+  getSortedFirst(n: number): number[] {
+    return sortedFirstN(this._expenses, n);
+  }
+
+  getFirstN(n: number): number[] {
+    return firstN(this._expenses, n);
+  }
+
+  getMinimumExpenses(): number {
+    return getMinimum(this._expenses);
+  }
+
+  getAverage ():number{
+    return getAverage(this._expenses)
   }
 }
