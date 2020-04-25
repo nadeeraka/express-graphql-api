@@ -1,13 +1,8 @@
-import { Mutation, Resolver, Arg, ObjectType, Field, Ctx } from "type-graphql";
-import { User } from "../../entity/User";
 import { compare } from "bcryptjs";
-import { sign } from "jsonwebtoken";
-import { Main } from "../../util/types";
+import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from "type-graphql";
+import { User } from "../../entity/User";
 import { createAccessToken, createRefreshToken } from "../../util/auth";
-
-const dotenv = require("dotenv").config();
-const SECRET_KEY: any = process.env.SECRET_KEY;
-const SECRET_KEY_TWO: any = process.env.SECRET_KEY_TWO;
+import { Main } from "../../util/types";
 
 @ObjectType()
 class LoginResponse {
