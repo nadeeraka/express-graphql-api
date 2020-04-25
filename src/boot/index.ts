@@ -7,7 +7,6 @@ import morgan from "morgan";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { resolvers } from "../graphql/resolverConfig";
-import { routes } from "../routes";
 import { dbConnect } from "../util/db/DButill";
 import { logger } from "../util/logger";
 
@@ -25,7 +24,6 @@ export const init = async () => {
 
   await dbConnect();
 
-  await app.use(routes.router);
   const apolloServer: any = new ApolloServer({
     schema: await buildSchema({
       resolvers: resolvers,
