@@ -3,6 +3,7 @@ import { User } from "../../entity/User";
 import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { Main } from "../../util/types";
+import { createAccessToken, createRefreshToken } from "../../util/auth";
 
 const dotenv = require("dotenv").config();
 const SECRET_KEY: any = process.env.SECRET_KEY;
@@ -34,16 +35,12 @@ export class Login {
     }
 
     // login success
-    res.cookie(
-      "jid",
-      sign({ userId: user.id }, SECRET_KEY_TWO, { expiresIn: "7d" }),
-      {
-        httpOnly: true,
-      }
-    );
+    res.cookie("jid", createRefreshToken(user), {
+      httpOnly: true,
+    });
 
     return {
-      accessToken: sign({ userId: user.id }, SECRET_KEY, { expiresIn: "15m" }),
+      accessToken: createAccessToken(user),
     };
   }
 }
