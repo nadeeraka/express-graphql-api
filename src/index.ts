@@ -1,8 +1,11 @@
 import "reflect-metadata";
 import {init} from './boot'
 import { logger } from "./util/logger";
+const dotenv = require('dotenv').config()
 
 
+ const ss:any = process.env.SECRET_KEY
+console.log(ss)
 try {
     init();
     logger('All systems runinig! ')
