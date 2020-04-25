@@ -8,7 +8,7 @@ import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import { resolvers } from "../graphql/resolverConfig";
 import { routes } from "../routes";
-import { dbConnect } from "../util/DButill";
+import { dbConnect } from "../util/db/DButill";
 import { logger } from "../util/logger";
 
 const port: string | number = process.env.port || 8080;
@@ -30,6 +30,7 @@ export const init = async () => {
     schema: await buildSchema({
       resolvers: resolvers,
     }),
+    context:({req,res})=>({req,res})
   });
   apolloServer.applyMiddleware({ app });
 

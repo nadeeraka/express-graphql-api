@@ -1,12 +1,6 @@
-import "reflect-metadata";
-import {
-  ExpressErrorMiddlewareInterface,
-  HttpError,
-  Middleware,
-} from "routing-controllers";
-
 import express from "express";
-//import { ContainerInstance } from 'typedi';
+import "reflect-metadata";
+import { HttpError } from "routing-controllers";
 
 export interface Context {
   request: express.Request;
@@ -25,10 +19,3 @@ export interface Main {
   res: express.Response;
   next?: express.NextFunction;
 }
-
-// export interface Common {
-//   req: express.Request;
-//   res: express.Response;
-//   next?: express.NextFunction;
-
-// }

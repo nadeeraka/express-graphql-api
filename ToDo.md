@@ -1,2 +1,0 @@
-[] add pattern
-[] add ai
