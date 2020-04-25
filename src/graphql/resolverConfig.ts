@@ -1,18 +1,5 @@
-import { ApolloServer } from "apollo-server-express";
-import express from 'express'
-import { buildSchema } from "type-graphql";
-import {Register} from '../graphql/resolvers/Register'
-import { resolve } from "dns";
-import {UserResolver} from '../graphql/resolvers/User'
-// const app = express();
-// export const bootUpApploServer = async()=>
-// {
-//     const apolloServer: any = new ApolloServer({
-//         schema: await buildSchema({
-//           resolvers: [UserResolver, Register],
-//         }),
-//       });
-//       apolloServer.applyMiddleware({ app });
-// }
+import { Login } from '../graphql/resolvers/Login';
+import { Register } from '../graphql/resolvers/Register';
+import { UserResolver } from '../graphql/resolvers/User';
 
-export const resolvers = [UserResolver, Register]
+export const resolvers  = [UserResolver, Register, Login]
