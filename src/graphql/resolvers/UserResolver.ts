@@ -1,18 +1,20 @@
-import {Resolver, Query, Mutation, Arg} from 'type-graphql'
+import { Resolver, Query, Mutation, Arg } from "type-graphql";
+import { hash } from "bcryptjs";
+import { User } from "../../entity/User";
+import { logger } from "../../util/logger";
+const dotenv = require("dotenv").config();
+const ss: any = process.env.SECRET_KEY;
 
 @Resolver()
 export class UserResolver {
-    @Query(()=>String)
-    hello(){
-        return 'hi'
-    }
+  @Query(() => String)
+  home() {
+    return "hi";
+  }
+  @Query(()=>[User])
+  users(){
+      return User.find()
+  }
 
-//     @Mutation()
-//     register(
-//         @Arg('email') email:string,
-//         @Arg('password') password:string
-//     ){
-// return
-//     }
-
+ 
 }
