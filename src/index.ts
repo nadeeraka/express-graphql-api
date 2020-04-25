@@ -1,17 +1,13 @@
 import "reflect-metadata";
-import {init} from './boot'
+import { init } from "./boot";
 import { logger } from "./util/logger";
-const dotenv = require('dotenv').config()
+const dotenv = require("dotenv").config();
 
-
- const ss:any = process.env.SECRET_KEY
-console.log(ss)
 try {
-    init();
-    logger('All systems runinig! ')
+  init();
+  logger("All systems runinig! ");
 } catch (error) {
-    logger('',true,error)
-    
+  logger("", true, error);
 }
 
 // createConnection().then(async connection => {

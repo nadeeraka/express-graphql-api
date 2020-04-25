@@ -13,7 +13,7 @@ import { bootMiddlewares } from "../middlewares";
 import { createConnection } from "typeorm";
 import {dbConnect} from '../util/DButill'
 import {logger} from '../util/logger'
-
+import { Register} from '../graphql/resolvers/RegisterResolver'
 const port: string | number = process.env.port || 8080;
 const app = express();
 export const init = async () => {
@@ -31,7 +31,7 @@ export const init = async () => {
   await app.use(routes.router);
   const apolloServer: any = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver],
+      resolvers: [UserResolver, Register],
     }),
   });
 
