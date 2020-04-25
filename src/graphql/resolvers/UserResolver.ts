@@ -7,12 +7,12 @@ export class UserResolver {
         return 'hi'
     }
 
-    @Mutation()
-    register(
-        @Arg('email') email:string,
-        @Arg('password') password:string
-    ){
-return
-    }
+//     @Mutation()
+//     register(
+//         @Arg('email') email:string,
+//         @Arg('password') password:string
+//     ){
+// return
+//     }
 
 }

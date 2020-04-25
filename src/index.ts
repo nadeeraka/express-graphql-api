@@ -1,12 +1,13 @@
 import "reflect-metadata";
 import {init} from './boot'
+import { logger } from "./util/logger";
 
 
 try {
     init();
-    console.log('All systems runinig! ')
+    logger('All systems runinig! ')
 } catch (error) {
-    console.error('Application is crashed'+ error)
+    logger('',true,error)
     
 }
 
