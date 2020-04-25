@@ -6,7 +6,7 @@ import {
   getMinimum,
   getSort,
   getAverage
-} from "../lib/util";
+} from "../../lib/util";
 
 export class Expenses {
   constructor(private _expenses: number[], private _income: number) {}
