@@ -6,14 +6,14 @@ import cors from "cors";
 import helmet from "helmet";
 import bodyParser from "body-parser";
 import { ApolloServer } from "apollo-server-express";
-import { UserResolver } from "../graphql/resolvers/UserResolver";
+import { UserResolver } from "../graphql/resolvers/User";
 import { buildSchema } from "type-graphql";
 import { loder } from "../util/loder";
 import { bootMiddlewares } from "../middlewares";
 import { createConnection } from "typeorm";
 import {dbConnect} from '../util/DButill'
 import {logger} from '../util/logger'
-import { Register} from '../graphql/resolvers/RegisterResolver'
+import { Register} from '../graphql/resolvers/Register'
 const port: string | number = process.env.port || 8080;
 const app = express();
 export const init = async () => {
