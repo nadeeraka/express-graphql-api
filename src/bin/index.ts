@@ -32,5 +32,5 @@ export const init = async () => {
   });
   apolloServer.applyMiddleware({ app });
 
-  await app.listen(port, () => logger(`server running on ${port}`));
+  await app.listen(port, () => logger(`🚀 Server ready at  ${port} `));
 };
