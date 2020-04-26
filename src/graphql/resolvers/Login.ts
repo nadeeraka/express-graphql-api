@@ -1,6 +1,6 @@
 import { compare } from "bcryptjs";
 import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from "type-graphql";
-import { User } from "../../entity/User";
+import { User } from "../../models/User";
 import { createAccessToken, createRefreshToken } from "../../util/auth";
 import { Main } from "../../util/types";
 

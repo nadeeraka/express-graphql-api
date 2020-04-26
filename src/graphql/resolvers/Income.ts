@@ -6,7 +6,7 @@ import {
   Resolver,
   registerEnumType,
 } from "type-graphql";
-import { Income } from "../../entity/Income";
+import { Income } from "../../models/Income";
 import { logger } from "../../util/logger";
 
 
