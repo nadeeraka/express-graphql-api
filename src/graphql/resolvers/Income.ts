@@ -3,25 +3,27 @@ import { hash } from "bcryptjs";
 import { Income } from "../../entity/Income";
 import { logger } from "../../util/logger";
 import {ResolverMap} from '../../util/types'
+import { EnumConfig } from "type-graphql/dist/decorators/types";
 
 @Resolver()
-export class UserResolver {
-    @Mutation(()=>Object) 
-  async register(
+export class IncomeResolver {
+    @Mutation(()=>Boolean) 
+  async saveIncome(
     @Arg("note") note: string,
-   // @Arg("income_type") income_type: string,
+    //@Arg("income_type") income_type: any,
     @Arg("amount") amount:number
   ) {
 try {
     await Income.insert({
         note,amount
     })
-    
+
 } catch (error) {
-    
+    console.log(error)
+return false    
 }  
     
-    return {};
+    return true;
   }
 
   @Query(() => String)
