@@ -1,9 +1,6 @@
-import { Resolver, Query, Mutation, Arg, Int } from "type-graphql";
-import { hash } from "bcryptjs";
+import { Arg, Int, Mutation, Query, Resolver } from "type-graphql";
 import { Income } from "../../entity/Income";
 import { logger } from "../../util/logger";
-import {ResolverMap} from '../../util/types'
-import { EnumConfig } from "type-graphql/dist/decorators/types";
 
 @Resolver()
 export class IncomeResolver {
@@ -19,7 +16,7 @@ try {
     })
 
 } catch (error) {
-    console.log(error)
+    logger('',true,error)
 return false    
 }  
     
