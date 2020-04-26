@@ -34,7 +34,7 @@ export class Income extends BaseEntity {
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   date: Date;
 
-  @Field(() => INCOME_CHOICES)
+  @Field(() => String)
   @Column({
     type: "enum",
     enum: INCOME_CHOICES,
