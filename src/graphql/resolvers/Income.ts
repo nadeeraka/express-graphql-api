@@ -38,11 +38,16 @@ export class IncomeResolver {
     return "hi";
   }
   @Query(() => [Income])
-  getIncome() {
+  getIncomeArray() {
     return Income.find();
   }
   @Query(() => Int)
-  Count() {
+  getTotalIncome() {
     return Income.count();
+  }
+  @Query(() => [Income])
+  getIncome() {
+    const incomeArray = Income.find();
+   // const sortedArray = incomeArray.map(())
   }
 }
