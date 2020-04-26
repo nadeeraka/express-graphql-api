@@ -35,12 +35,8 @@ export class Income extends BaseEntity {
   date: Date;
 
   @Field(() => String)
-  @Column({
-    type: "enum",
-    enum: INCOME_CHOICES,
-    default: INCOME_CHOICES.SALARY,
-  })
-  income_type: INCOME_CHOICES;
+  @Column({type:'varchar',length:200})
+  income_type: String;
 
   @ManyToOne(() => User,user => user.income)
   user: User;
