@@ -10,6 +10,6 @@ export const dbConnect = async () => {
       logger("Db connected ✨");
     }
   } catch (error) {
-    logger("Db connection error");
+    logger("Db connection error", true,error);
   }
 };
