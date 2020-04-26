@@ -12,7 +12,7 @@ import { Income } from "./Income";
 import { Expense } from "./Expenses";
 import { Balance } from "./Balance";
 import { Saving } from "./Saving";
-import { v4 as uuid } from 'uuid'; 
+import { v5 as uuid } from 'uuid'; 
 
 @ObjectType()
 @Entity("users")
@@ -59,7 +59,7 @@ export class User extends BaseEntity {
 
   @BeforeInsert()
   addId(){
-    this.id = uuid()
+    this.id = uuid(this.first_name, this.last_name)
   }
 
 }
