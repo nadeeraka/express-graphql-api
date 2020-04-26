@@ -15,14 +15,14 @@ import {
   SAVING_CHOICES,
 } from "../util/db/enum";
 import { User } from "./User";
-import { v4 as uuid } from 'uuid'; 
+
 
 @ObjectType()
 @Entity("incomes")
 export class Income extends BaseEntity {
   @Field(() => Int)
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Field(() => String)
   @Column({type:'varchar',length:200,nullable:true})
@@ -43,9 +43,5 @@ export class Income extends BaseEntity {
   @ManyToOne(() => User,user => user.income)
   user: User;
 
-  @BeforeInsert()
-  addId(){
-    this.id = uuid()
-  }
-
+ 
 }

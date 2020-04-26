@@ -6,6 +6,7 @@ import {
     FindOperator,
     Double,
     ManyToOne,
+    BeforeInsert,
   } from "typeorm";
   import { ObjectType, Field, Int } from "type-graphql";
   import {
@@ -14,6 +15,7 @@ import {
     SAVING_CHOICES,
   } from "../util/db/enum";
   import { User } from "./User";
+  import { v4 as uuid } from 'uuid'; 
   
   @ObjectType()
   @Entity("balances")
@@ -37,6 +39,7 @@ import {
     })
     user: User;
   
+   
   
   }
   
