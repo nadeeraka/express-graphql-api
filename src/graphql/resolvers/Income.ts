@@ -45,9 +45,10 @@ export class IncomeResolver {
   getTotalIncome() {
     return Income.count();
   }
-  // @Query(() => [Income])
-  // getIncome() {
-  //   const incomeArray = Income.find();
-  //  // const sortedArray = incomeArray.map(())
-  // }
+  @Query(() => [Income])
+  getIncome() {
+    //const incomeArray = Income.;
+    //return incomeArray;
+    //const sortedArray = incomeArray.map(())
+  }
 }
