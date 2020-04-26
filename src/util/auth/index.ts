@@ -1,4 +1,4 @@
-import { User } from "src/entity/User";
+import { User } from "src/models/User";
 import { sign } from "jsonwebtoken";
 const dotenv = require("dotenv").config();
 const SECRET_KEY: any = process.env.SECRET_KEY;

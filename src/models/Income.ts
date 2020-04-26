@@ -6,6 +6,7 @@ import {
   FindOperator,
   Double,
   ManyToOne,
+  BeforeInsert,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
 import {
@@ -14,6 +15,7 @@ import {
   SAVING_CHOICES,
 } from "../util/db/enum";
 import { User } from "./User";
+
 
 @ObjectType()
 @Entity("incomes")
@@ -27,7 +29,7 @@ export class Income extends BaseEntity {
   note: string;
 
   @Field(() => Int)
-  @Column("decimal", { precision: 7, scale: 4 })
+  @Column({type:'double precision'})
   amount: number;
 
   @Field(() => Date)
@@ -35,15 +37,11 @@ export class Income extends BaseEntity {
   date: Date;
 
   @Field(() => String)
-  @Column({
-    type: "enum",
-    enum: INCOME_CHOICES,
-    default: INCOME_CHOICES.SALARY,
-  })
-  income_type: INCOME_CHOICES;
+  @Column({type:'varchar',length:200})
+  income_type: String;
 
   @ManyToOne(() => User,user => user.income)
   user: User;
 
-
+ 
 }

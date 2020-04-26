@@ -5,12 +5,14 @@ import {
   BaseEntity,
   FindOperator,
   OneToMany,
+  BeforeInsert,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
 import { Income } from "./Income";
 import { Expense } from "./Expenses";
 import { Balance } from "./Balance";
 import { Saving } from "./Saving";
+import { v4 as uuid } from 'uuid'; 
 
 @ObjectType()
 @Entity("users")
@@ -54,4 +56,10 @@ export class User extends BaseEntity {
     onDelete: "CASCADE",
   })
   saving: Saving;
+
+  // @BeforeInsert()
+  // addId(){
+  //   this.id = uuid()
+  // }
+
 }
