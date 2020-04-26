@@ -7,21 +7,25 @@ import {
   OneToMany,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
-import {Income} from './Income'
+import { Income } from "./Income";
+import { Expense } from "./Expenses";
+import { Balance } from "./Balance";
+import { Saving } from "./Saving";
 
 @ObjectType()
 @Entity("users")
 export class User extends BaseEntity {
+  
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field(() => String)
-  @Column({ type: "varchar", length: 230, nullable:true })
+  @Column({ type: "varchar", length: 230, nullable: true })
   first_name: string;
 
   @Field(() => String)
-  @Column({ type: "varchar", length: 230,nullable:true })
+  @Column({ type: "varchar", length: 230, nullable: true })
   last_name: string;
 
   @Field(() => String)
@@ -31,7 +35,23 @@ export class User extends BaseEntity {
   @Column({ type: "text" })
   password: string;
 
-  @OneToMany(type => Income, income => income.user)
-  income: Income[];
+  @OneToMany(() => Income, (income) => income.user, {
+    onDelete: "CASCADE",
+  })
+  income: Income;
 
+  @OneToMany(() => Expense, (expense) => expense.user, {
+    onDelete: "CASCADE",
+  })
+  expense: Expense;
+
+  @OneToMany(() => Balance, (balance) => balance.user, {
+    onDelete: "CASCADE",
+  })
+  balance: Balance;
+
+  @OneToMany(() => Saving, (saving) => saving.user, {
+    onDelete: "CASCADE",
+  })
+  saving: Saving;
 }

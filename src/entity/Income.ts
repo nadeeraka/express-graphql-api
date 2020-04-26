@@ -16,7 +16,7 @@ import {
 import { User } from "./User";
 
 @ObjectType()
-@Entity("income")
+@Entity("incomes")
 export class Income extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -26,15 +26,15 @@ export class Income extends BaseEntity {
   @Column({type:'varchar',length:200,nullable:true})
   note: string;
 
-  @Field(() => Double)
-  @Column({type:'double',length:100})
+  @Field(() => Int)
+  @Column("decimal", { precision: 7, scale: 4 })
   amount: number;
 
   @Field(() => Date)
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   date: Date;
 
-  @Field(() => INCOME_CHOICES)
+  @Field(() => String)
   @Column({
     type: "enum",
     enum: INCOME_CHOICES,
@@ -42,7 +42,7 @@ export class Income extends BaseEntity {
   })
   income: INCOME_CHOICES;
 
-  @ManyToOne(type => User, user => user.incomes)
+  @ManyToOne(() => User,user => user.income)
   user: User;
 
 
