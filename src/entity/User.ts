@@ -4,8 +4,10 @@ import {
   Column,
   BaseEntity,
   FindOperator,
+  OneToMany,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
+import {Income} from './Income'
 
 @ObjectType()
 @Entity("users")
@@ -28,4 +30,8 @@ export class User extends BaseEntity {
 
   @Column({ type: "text" })
   password: string;
+
+  @OneToMany(type => Income, income => income.user)
+  income: Income[];
+
 }
