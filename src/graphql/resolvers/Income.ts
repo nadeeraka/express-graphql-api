@@ -8,7 +8,7 @@ import {
 } from "type-graphql";
 import { Income } from "../../entity/Income";
 import { logger } from "../../util/logger";
-import { INCOME_CHOICES } from "../../util/db/enum";
+
 
 
 @Resolver()

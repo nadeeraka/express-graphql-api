@@ -6,6 +6,7 @@ import {
   FindOperator,
   Double,
   ManyToOne,
+  BeforeInsert,
 } from "typeorm";
 import { ObjectType, Field, Int } from "type-graphql";
 import {
@@ -14,13 +15,14 @@ import {
   SAVING_CHOICES,
 } from "../util/db/enum";
 import { User } from "./User";
+import { v4 as uuid } from 'uuid'; 
 
 @ObjectType()
 @Entity("incomes")
 export class Income extends BaseEntity {
   @Field(() => Int)
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Field(() => String)
   @Column({type:'varchar',length:200,nullable:true})
@@ -41,5 +43,9 @@ export class Income extends BaseEntity {
   @ManyToOne(() => User,user => user.income)
   user: User;
 
+  @BeforeInsert()
+  addId(){
+    this.id = uuid()
+  }
 
 }
