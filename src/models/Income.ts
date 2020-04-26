@@ -29,7 +29,7 @@ export class Income extends BaseEntity {
   note: string;
 
   @Field(() => Int)
-  @Column("decimal", { precision: 7, scale: 4 })
+  @Column({type:'double precision'})
   amount: number;
 
   @Field(() => Date)

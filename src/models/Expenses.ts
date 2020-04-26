@@ -35,12 +35,8 @@ import {
     date: Date;
   
     @Field(() => String)
-    @Column({
-      type: "enum",
-      enum: EXPENSE_CHOICES,
-      default: EXPENSE_CHOICES.LIFESTYLE,
-    })
-    expense: EXPENSE_CHOICES;
+    @Column({ type:'varchar', length:100  })
+    expense_type: string;
   
     @ManyToOne(() => User,user => user.expense,{
         onDelete: 'CASCADE',

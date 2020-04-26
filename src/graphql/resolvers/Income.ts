@@ -38,11 +38,11 @@ export class IncomeResolver {
     return "hi";
   }
   @Query(() => [Income])
-  users() {
+  getIncome() {
     return Income.find();
   }
   @Query(() => Int)
-  userCount() {
+  Count() {
     return Income.count();
   }
 }

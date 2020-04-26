@@ -12,15 +12,15 @@ import { Income } from "./Income";
 import { Expense } from "./Expenses";
 import { Balance } from "./Balance";
 import { Saving } from "./Saving";
-import { v5 as uuid } from 'uuid'; 
+import { v4 as uuid } from 'uuid'; 
 
 @ObjectType()
 @Entity("users")
 export class User extends BaseEntity {
   
   @Field(() => Int)
-  @PrimaryGeneratedColumn('uuid')
-  id: string;
+  @PrimaryGeneratedColumn()
+  id: number;
 
   @Field(() => String)
   @Column({ type: "varchar", length: 230, nullable: true })
@@ -57,9 +57,9 @@ export class User extends BaseEntity {
   })
   saving: Saving;
 
-  @BeforeInsert()
-  addId(){
-    this.id = uuid(this.first_name, this.last_name)
-  }
+  // @BeforeInsert()
+  // addId(){
+  //   this.id = uuid()
+  // }
 
 }

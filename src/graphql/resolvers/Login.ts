@@ -11,7 +11,7 @@ class LoginResponse {
 }
 
 @Resolver()
-export class Login {
+export class LoginResolver {
   @Mutation(() => LoginResponse)
   async login(
     @Arg("email") email: string,

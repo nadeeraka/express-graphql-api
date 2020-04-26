@@ -6,7 +6,8 @@
    "password": "password",
    "database": "express_ex",
    "synchronize": true,
-   "logging": false,
+   "logging": true,
+   "autoSchemaSync": true,
    "entities": [
       "src/models/**/*.ts"
    ],

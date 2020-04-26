@@ -4,7 +4,7 @@ import { User } from "../../models/User";
 import { logger } from "../../util/logger";
 
 @Resolver()
-export class Register {
+export class RegisterResolver {
 
 @Mutation(() => Boolean)
 async register(
