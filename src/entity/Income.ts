@@ -40,7 +40,7 @@ export class Income extends BaseEntity {
     enum: INCOME_CHOICES,
     default: INCOME_CHOICES.SALARY,
   })
-  income: INCOME_CHOICES;
+  income_type: INCOME_CHOICES;
 
   @ManyToOne(() => User,user => user.income)
   user: User;

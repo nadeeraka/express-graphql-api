@@ -1,0 +1,1 @@
+find data type for income_input
