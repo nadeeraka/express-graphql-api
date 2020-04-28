@@ -1,6 +1,6 @@
 import { calculate, getHigherValue, sortedFirstN, firstN, getMinimum, getAverage } from "src/lib/util";
 
-export class Income {
+export class IncomeMainClass {
   constructor(private _income: number[]) {}
   calculateIncome(): number {
     return calculate(this._income);
