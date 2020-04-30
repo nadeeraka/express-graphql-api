@@ -5,7 +5,7 @@ const dotenv = require("dotenv").config();
 
 try {
   init();
-  logger("All systems running 🎉 ");
+  logger("Performing system checks 🧭 ");
 } catch (error) {
   logger("", true, error);
 }

@@ -37,7 +37,7 @@ export class ExpenseResolver {
 
   @Query(() => String)
   @UseMiddleware(isAuth)
-  home(@Ctx() { payload }: Main) {
+  check(@Ctx() { payload }: Main) {
     logger(payload);
     return `user id : ${payload?.userId}`;
   }
