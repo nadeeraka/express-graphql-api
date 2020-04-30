@@ -1,4 +1,4 @@
-export const logger = (s?: string, e?: boolean, err?: any): void => {
+export const logger = (s?: string|any, e?: boolean, err?: any): void => {
   const env = process.env.NODE_ENV || "development";
   if (env === "development") {
     if (e) {
