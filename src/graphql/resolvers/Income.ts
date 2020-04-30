@@ -5,9 +5,11 @@ import {
   Query,
   Resolver,
   registerEnumType,
+  Ctx,
 } from "type-graphql";
 import { Income } from "../../models/Income";
 import { logger } from "../../util/logger";
+import { Main } from "src/util/types";
 
 
 
@@ -34,6 +36,10 @@ export class IncomeResolver {
   }
 
   @Query(() => String)
+  check(@Ctx() { payload }: Main) {
+    logger(payload);
+    return `user id : ${payload?.userId}`;
+  }
   home() {
     return "hi";
   }

@@ -21,6 +21,7 @@ export interface Main {
   req: express.Request;
   res: express.Response;
   next?: express.NextFunction;
+  payload?:{userId:string}
 }
 
 export interface ResolverMap {
