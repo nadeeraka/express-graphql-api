@@ -3,6 +3,7 @@ import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from "type-graphql";
 import { User } from "../../models/User";
 import { createAccessToken, createRefreshToken } from "../../util/auth";
 import { Main } from "../../util/types";
+import { sendRefreshToken } from "../../util/auth/refreshToken";
 
 @ObjectType()
 class LoginResponse {
@@ -30,9 +31,8 @@ export class LoginResolver {
     }
 
     // login success
-    res.cookie("jid", createRefreshToken(user), {
-      httpOnly: true,
-    });
+    
+    sendRefreshToken(res,createRefreshToken(user))
 
     return {
       accessToken: createAccessToken(user),

@@ -1,7 +1,8 @@
 import { app } from "../util/middleware/app";
 import { verify } from "jsonwebtoken";
 import { User } from "../models/User";
-import { createAccessToken } from "../util/auth";
+import { createAccessToken, createRefreshToken } from "../util/auth";
+import { sendRefreshToken } from "../util/auth/refreshToken";
 
 export const routes = async () => {
   await app.get("/", (_, res) => {
@@ -39,6 +40,8 @@ export const routes = async () => {
       res.send({ emoj: "🚫", message: " Auth fail 😓" });
       throw new Error(" Auth fail 😓");
     }
+    //create refresh token
+    sendRefreshToken(res,createRefreshToken(user))
     // create new access token
     return res.send({
       emoj: "🎊",
