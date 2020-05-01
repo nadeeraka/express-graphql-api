@@ -5,15 +5,21 @@ export const routes = async () => {
     res.json({
       message: {
         greetings: " welcome 🎉",
-        details: "go to /graphql to query",
+        details: "go to /graphql to query 👻",
       },
     });
   });
+// 
+  await app.post('/refresh_token',(req,_)=>{
+      console.log(req.headers)
+  })
+
+
 
   await app.use((req, res) => {
     res.status(404).json({
       status: "not found 404!",
-      page: `requested page ${req.originalUrl} is not found!`,
+      page: `requested page ${req.originalUrl} is not found! 👹`,
       emoj: "⛔️",
     });
   });

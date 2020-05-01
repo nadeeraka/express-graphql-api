@@ -1,41 +1,45 @@
 {
-   "name": "server",
-   "version": "0.0.1",
-   "description": "Awesome project developed with TypeORM.",
-   "devDependencies": {
-      "@types/express": "^4.17.6",
-      "@types/graphql": "^14.5.0",
-      "@types/jsonwebtoken": "^8.3.9",
-      "@types/node": "^13.13.2",
-      "@types/uuid": "^7.0.3",
-      "nodemon": "^2.0.3",
-      "ts-node": "8.9.0",
-      "typescript": "3.8.3"
-   },
-   "dependencies": {
-      "@types/bcryptjs": "^2.4.2",
-      "@types/body-parser": "^1.19.0",
-      "@types/cors": "^2.8.6",
-      "@types/helmet": "0.0.45",
-      "@types/morgan": "^1.9.0",
-      "apollo-server-express": "^2.12.0",
-      "bcryptjs": "^2.4.3",
-      "body-parser": "^1.19.0",
-      "cors": "^2.8.5",
-      "dotenv": "^8.2.0",
-      "express": "^4.17.1",
-      "graphql": "^14.1.1",
-      "helmet": "^3.22.0",
-      "jsonwebtoken": "^8.5.1",
-      "morgan": "^1.10.0",
-      "pg": "^8.0.2",
-      "reflect-metadata": "^0.1.10",
-      "routing-controllers": "^0.8.1",
-      "type-graphql": "^0.17.6",
-      "typeorm": "0.2.24",
-      "uuid": "^7.0.3"
-   },
-   "scripts": {
-      "start": "nodemon --exec ts-node src/index.ts"
-   }
+  "name": "server",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Nimantha Nadeeraka",
+  "description": "simple backend that use graphql",
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/graphql": "^14.5.0",
+    "@types/jsonwebtoken": "^8.3.9",
+    "@types/node": "^13.13.2",
+    "@types/uuid": "^7.0.3",
+    "@types/bcryptjs": "^2.4.2",
+    "nodemon": "^2.0.3",
+    "@types/body-parser": "^1.19.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/helmet": "0.0.45",
+    "@types/morgan": "^1.9.0",
+    "ts-node": "8.9.0",
+    "typescript": "3.8.3"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.12.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^14.1.1",
+    "helmet": "^3.22.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.0.2",
+    "reflect-metadata": "^0.1.10",
+    "routing-controllers": "^0.8.1",
+    "type-graphql": "^0.17.6",
+    "typeorm": "0.2.24",
+    "uuid": "^7.0.3"
+  },
+  "scripts": {
+    "start": "nodemon --exec ts-node src/index.ts"
+  }
 }
