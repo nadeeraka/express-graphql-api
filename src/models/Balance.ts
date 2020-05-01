@@ -1,21 +1,6 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    BaseEntity,
-    FindOperator,
-    Double,
-    ManyToOne,
-    BeforeInsert,
-  } from "typeorm";
-  import { ObjectType, Field, Int } from "type-graphql";
-  import {
-    EXPENSE_CHOICES,
-    INCOME_CHOICES,
-    SAVING_CHOICES,
-  } from "../util/db/enum";
-  import { User } from "./User";
-  import { v4 as uuid } from 'uuid'; 
+import { Field, Int, ObjectType } from "type-graphql";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
   
   @ObjectType()
   @Entity("balances")

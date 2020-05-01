@@ -7,19 +7,19 @@ import { logger } from "../logger";
 const dotenv = require("dotenv").config();
 
 export const isAuth: MiddlewareFn<Main> = ({ context }, next) => {
-  const sk: any = process.env.SECRET_KEY;
+  //const sk: any = process.env.SECRET_KEY;
 
   const auth = context.req.headers["authorization"];
 
   if (!auth) {
-    throw new Error("Not valid request ⚠️ 🚫");
+    throw new Error("Not valid request 🚫");
   }
 
   // verifying token
 
   try {
-    const token = auth.split("")[1];
-    const payload = verify(token, sk);
+    const token = auth.split(" ")[1];
+    const payload = verify(token,process.env.SECRET_KEY!);
     context.payload = payload as any;
   } catch (error) {
     logger("", true, error);
