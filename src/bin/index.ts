@@ -6,8 +6,8 @@ import { buildSchema } from "type-graphql";
 import { resolvers } from "../graphql/resolverConfig";
 import { dbConnect } from "../util/db/DButill";
 import { logger } from "../util/logger";
-import {main} from '../middlewares'
 import {app} from '../util/middleware/app'
+import {routes} from '../middlewares'
 
 const port: string | number = process.env.port || 8080;
 export const bootstrap = async () => {
@@ -18,7 +18,7 @@ export const bootstrap = async () => {
     })
   );
 // routes
- app.use(main)
+ await routes()
 
   await dbConnect();
 
