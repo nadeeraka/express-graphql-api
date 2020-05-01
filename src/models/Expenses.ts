@@ -1,19 +1,6 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    BaseEntity,
-    FindOperator,
-    Double,
-    ManyToOne,
-  } from "typeorm";
-  import { ObjectType, Field, Int } from "type-graphql";
-  import {
-    EXPENSE_CHOICES,
-    INCOME_CHOICES,
-    SAVING_CHOICES,
-  } from "../util/db/enum";
-  import { User } from "./User";
+import { Field, Int, ObjectType } from "type-graphql";
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./User";
   
   @ObjectType()
   @Entity("expenses")

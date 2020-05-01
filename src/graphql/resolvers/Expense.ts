@@ -9,8 +9,8 @@ import {
   Ctx,
 } from "type-graphql";
 import { logger } from "../../util/logger";
-import { Expense } from "src/models/Expenses";
-import { isAuth } from "src/util/auth/isAuth";
+import { Expense } from '../../models/Expenses';
+import { isAuth } from "../../util/auth/isAuth";
 import { Main } from "../../util/types";
 
 @Resolver()
