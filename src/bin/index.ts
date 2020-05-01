@@ -11,7 +11,7 @@ import { logger } from "../util/logger";
 
 const port: string | number = process.env.port || 8080;
 const app = express();
-export const init = async () => {
+export const bootstrap = async () => {
   await app.use(morgan("common"));
   await app.use(
     cors({

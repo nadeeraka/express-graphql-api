@@ -1,10 +1,10 @@
 import "reflect-metadata";
-import { init } from "./bin";
+import { bootstrap } from "./bin";
 import { logger } from "./util/logger";
 const dotenv = require("dotenv").config();
 
 try {
-  init();
+  bootstrap();
   logger("Performing system checks 🧭 ");
 } catch (error) {
   logger("", true, error);

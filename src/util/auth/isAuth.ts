@@ -18,7 +18,7 @@ export const isAuth: MiddlewareFn<Main> = ({ context }, next) => {
   // verifying token
 
   try {
-    const token = auth.split("")[1];
+    const token = auth.split(" ")[1];
     const payload = verify(token, sk);
     context.payload = payload as any;
   } catch (error) {
