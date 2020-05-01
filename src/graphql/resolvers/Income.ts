@@ -10,6 +10,8 @@ import {
 import { Income } from "../../models/Income";
 import { logger } from "../../util/logger";
 import { Main } from "src/util/types";
+import { getConnection } from "typeorm";
+import { User } from "../../models/User";
 
 
 
@@ -34,8 +36,18 @@ export class IncomeResolver {
 
     return true;
   }
+ //  🔖
+  @Mutation(() => Boolean)
+  async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
+    await getConnection()
+      .getRepository(User)
+      .increment({ id: userId }, "tokenVersion", 1);
+
+    return true;
+  }
 
   @Query(() => String)
+ 
   check(@Ctx() { payload }: Main) {
     logger(payload);
     return `user id : ${payload?.userId}`;

@@ -1,7 +1,8 @@
 import { app } from "../util/middleware/app";
 import { verify } from "jsonwebtoken";
 import { User } from "../models/User";
-import { createAccessToken } from "../util/auth";
+import { createAccessToken, createRefreshToken } from "../util/auth";
+import { sendRefreshToken } from "../util/auth/refreshToken";
 
 export const routes = async () => {
   await app.get("/", (_, res) => {
@@ -12,7 +13,8 @@ export const routes = async () => {
       },
     });
   });
-  //
+
+  //refresh token
   await app.post("/refresh_token", async (req, res) => {
     const cookie = req.cookies.jid;
     //check cookie
@@ -39,6 +41,15 @@ export const routes = async () => {
       res.send({ emoj: "🚫", message: " Auth fail 😓" });
       throw new Error(" Auth fail 😓");
     }
+
+    //check token version
+    if (user.tokenVersion !== payload.tokenVersion) {
+      res.send({ emoj: "🚫", message: " Auth fail 😓" });
+      throw new Error(" Auth fail 😓");
+    }
+
+    //create refresh token
+    sendRefreshToken(res, createRefreshToken(user));
     // create new access token
     return res.send({
       emoj: "🎊",
@@ -46,6 +57,12 @@ export const routes = async () => {
       message: " success 🤓",
     });
   });
+
+
+  // revoke refresh token
+//   app.get('/revoke', (req,_)=>{
+//       console.log(req.body)
+//   })
 
   //   await app.use((req, res) => {
   //     //whitelist
