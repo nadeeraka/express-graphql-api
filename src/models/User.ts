@@ -34,6 +34,9 @@ export class User extends BaseEntity {
   @Column({ type: "varchar", length: 230, unique: true })
   email: string;
 
+  @Column('int',{default:0})
+  tokenVersion:number 
+
   @Column({ type: "text" })
   password: string;
 

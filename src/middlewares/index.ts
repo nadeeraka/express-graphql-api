@@ -13,7 +13,8 @@ export const routes = async () => {
       },
     });
   });
-  //
+
+  //refresh token
   await app.post("/refresh_token", async (req, res) => {
     const cookie = req.cookies.jid;
     //check cookie
@@ -40,8 +41,15 @@ export const routes = async () => {
       res.send({ emoj: "🚫", message: " Auth fail 😓" });
       throw new Error(" Auth fail 😓");
     }
+
+    //check token version
+    if (user.tokenVersion !== payload.tokenVersion) {
+      res.send({ emoj: "🚫", message: " Auth fail 😓" });
+      throw new Error(" Auth fail 😓");
+    }
+
     //create refresh token
-    sendRefreshToken(res,createRefreshToken(user))
+    sendRefreshToken(res, createRefreshToken(user));
     // create new access token
     return res.send({
       emoj: "🎊",
@@ -49,6 +57,12 @@ export const routes = async () => {
       message: " success 🤓",
     });
   });
+
+
+  // revoke refresh token
+//   app.get('/revoke', (req,_)=>{
+//       console.log(req.body)
+//   })
 
   //   await app.use((req, res) => {
   //     //whitelist
