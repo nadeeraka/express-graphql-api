@@ -36,15 +36,15 @@ export class IncomeResolver {
 
     return true;
   }
- //  🔖
-  @Mutation(() => Boolean)
-  async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
-    await getConnection()
-      .getRepository(User)
-      .increment({ id: userId }, "tokenVersion", 1);
+//  //  🔖
+//   @Mutation(() => Boolean)
+//   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
+//     await getConnection()
+//       .getRepository(User)
+//       .increment({ id: userId }, "tokenVersion", 1);
 
-    return true;
-  }
+//     return true;
+//   }
 
   @Query(() => String)
  
