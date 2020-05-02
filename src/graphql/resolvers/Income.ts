@@ -9,11 +9,12 @@ import {
 } from "type-graphql";
 import { Income } from "../../models/Income";
 import { logger } from "../../util/logger";
-import { Main } from "src/util/types";
+import { Main } from "../../util/types";
 import { getConnection } from "typeorm";
 import { User } from "../../models/User";
 
-
+//TOdo use dependency injection
+//const incomeObj = new IncomeMainClass([])
 
 @Resolver()
 export class IncomeResolver {
@@ -36,18 +37,17 @@ export class IncomeResolver {
 
     return true;
   }
- //  🔖
-  @Mutation(() => Boolean)
-  async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
-    await getConnection()
-      .getRepository(User)
-      .increment({ id: userId }, "tokenVersion", 1);
+  //  //  🔖
+  //   @Mutation(() => Boolean)
+  //   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
+  //     await getConnection()
+  //       .getRepository(User)
+  //       .increment({ id: userId }, "tokenVersion", 1);
 
-    return true;
-  }
+  //     return true;
+  //   }
 
   @Query(() => String)
- 
   check(@Ctx() { payload }: Main) {
     logger(payload);
     return `user id : ${payload?.userId}`;
@@ -56,17 +56,32 @@ export class IncomeResolver {
     return "hi";
   }
   @Query(() => [Income])
-  getIncomeArray() {
-    return Income.find();
+  async getIncomeArray() {
+    return await Income.find();
   }
   @Query(() => Int)
-  getTotalIncome() {
-    return Income.count();
+  async getTotalIncome() {
+    return await Income.count();
   }
-  @Query(() => [Income])
-  getIncome() {
-    //const incomeArray = Income.;
-    //return incomeArray;
-    //const sortedArray = incomeArray.map(())
+  @Query(() => [Number])
+  async getIncome() {
+    const incomeArray = Income.find();
+    const arr = await Income.find();
+    const valArr: number[] = arr.map((data) => data.amount);
+    return valArr;
+  }
+  @Query(() => [Number])
+  async getAmountsWithValue(amount: number) {
+    const arr = await Income.find();
+    const valArr: number[] = arr.map((data) => data.amount + amount);
+    return valArr;
+  }
+  @Query(() => Number)
+  async totalIncome() {
+    const arr = await Income.find();
+    const subTotal: number = arr
+      .map((data) => data.amount)
+      .reduce((a, b) => a + b);
+    return subTotal;
   }
 }
