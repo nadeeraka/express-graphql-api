@@ -24,7 +24,7 @@ export class Income extends BaseEntity {
 
   @Field(() => String)
   @Column({type:'varchar',length:200})
-  income_type: String;
+  income_type: string;
 
   @ManyToOne(() => User,user => user.income)
   user: User;

@@ -16,7 +16,7 @@ import { Main } from "../../util/types";
 @Resolver()
 export class ExpenseResolver {
   @Mutation(() => Boolean)
-  async saveIncome(
+  async saveExpense(
     @Arg("note") note: string,
     @Arg("expense_type") expense_type: string,
     @Arg("amount") amount: number

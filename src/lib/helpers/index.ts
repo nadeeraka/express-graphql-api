@@ -1,3 +1,6 @@
+import {Income} from '../../models/Income'
+
+export const incomeArray = async()=> await Income.find();
 export const sortArray = (arr:number[])=>
 {
     if (arr.length < 0)return  [];
@@ -21,3 +24,5 @@ export const getMin = (arr: number[]):number => {
     }
     return -1
 };
+
+

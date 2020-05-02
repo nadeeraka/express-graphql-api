@@ -12,6 +12,7 @@ import { logger } from "../../util/logger";
 import { Main } from "../../util/types";
 import { getConnection } from "typeorm";
 import { User } from "../../models/User";
+import { getMax, getMin, sortArray, incomeArray } from "../../lib/helpers";
 
 //TOdo use dependency injection
 //const incomeObj = new IncomeMainClass([])
@@ -72,16 +73,17 @@ export class IncomeResolver {
   }
   @Query(() => [Number])
   async getAmountsWithValue(amount: number) {
-    const arr = await Income.find();
-    const valArr: number[] = arr.map((data) => data.amount + amount);
-    return valArr;
+    return await (await this.getIncome()).map((a) => a + amount);
   }
   @Query(() => Number)
   async totalIncome() {
-    const arr = await Income.find();
-    const subTotal: number = arr
-      .map((data) => data.amount)
-      .reduce((a, b) => a + b);
-    return subTotal;
+    const income: number[] = await this.getIncome();
+    return income.reduce((a, b) => a + b);
+  }
+
+  @Query(() => Number)
+  async getLagerIncome() {
+    const income: number[] = await this.getIncome();
+    return getMax(income);
   }
 }
