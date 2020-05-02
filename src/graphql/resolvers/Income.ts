@@ -12,7 +12,7 @@ import { logger } from "../../util/logger";
 import { Main } from "../../util/types";
 import { getConnection } from "typeorm";
 import { User } from "../../models/User";
-import { getMax, getMin, sortArray, incomeArray } from "../../lib/helpers";
+import { getMax, getMin, sortArray, incomeArray,getAverage,getTotal } from "../../lib/helpers";
 
 //TOdo use dependency injection
 //const incomeObj = new IncomeMainClass([])
@@ -38,16 +38,7 @@ export class IncomeResolver {
 
     return true;
   }
-  //  //  🔖
-  //   @Mutation(() => Boolean)
-  //   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
-  //     await getConnection()
-  //       .getRepository(User)
-  //       .increment({ id: userId }, "tokenVersion", 1);
-
-  //     return true;
-  //   }
-
+  
   @Query(() => String)
   check(@Ctx() { payload }: Main) {
     logger(payload);
@@ -78,7 +69,7 @@ export class IncomeResolver {
   @Query(() => Number)
   async totalIncome() {
     const income: number[] = await this.getIncome();
-    return income.reduce((a, b) => a + b);
+    return  getTotal(income);
   }
 
   @Query(() => Number)
@@ -86,4 +77,19 @@ export class IncomeResolver {
     const income: number[] = await this.getIncome();
     return getMax(income);
   }
+
+  @Query(()=>Number)
+  async getAverage (){
+    const income: number[] = await this.getIncome();
+    return getAverage(income)
+  }
 }
+//  //  🔖
+  //   @Mutation(() => Boolean)
+  //   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
+  //     await getConnection()
+  //       .getRepository(User)
+  //       .increment({ id: userId }, "tokenVersion", 1);
+
+  //     return true;
+  //   }
