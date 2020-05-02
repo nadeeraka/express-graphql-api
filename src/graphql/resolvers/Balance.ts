@@ -1,5 +1,5 @@
 import { Arg, Ctx, Mutation, Query, Resolver } from "type-graphql";
-import { Saving } from "../../models/Saving";
+import { Balance } from "../../models/Balance";
 import { logger } from "../../util/logger";
 import { Main } from "../../util/types";
 
@@ -7,18 +7,12 @@ import { Main } from "../../util/types";
 //const incomeObj = new IncomeMainClass([])
 
 @Resolver()
-export class SavingResolver {
+export class BalanceResolver {
   @Mutation(() => Boolean)
-  async saveSaving(
-    @Arg("note") note: string,
-    @Arg("saving_type") saving_type: string,
-    @Arg("amount") amount: number
-  ) {
+  async saveBalance(@Arg("amount") amount: number) {
     try {
-      await Saving.insert({
-        note,
+      await Balance.insert({
         amount,
-        saving_type,
       });
     } catch (error) {
       logger("", true, error);
@@ -27,7 +21,7 @@ export class SavingResolver {
 
     return true;
   }
-  
+
   @Query(() => String)
   check(@Ctx() { payload }: Main) {
     logger(payload);
@@ -36,5 +30,4 @@ export class SavingResolver {
   home() {
     return "hi";
   }
-  
 }
