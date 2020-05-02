@@ -35,18 +35,22 @@ export class ExpenseResolver {
     return true;
   }
 
-  @Query(() => String)
-  @UseMiddleware(isAuth)
-  check(@Ctx() { payload }: Main) {
-    logger(payload);
-    return `user id : ${payload?.userId}`;
-  }
-  @Query(() => [Expense])
-  getExpense() {
-    return Expense.find();
-  }
-  @Query(() => Int)
-  Count() {
-    return Expense.count();
-  }
+  // @Query(() => String)
+  // @UseMiddleware(isAuth)
+  // check(@Ctx() { payload }: Main) {
+  //   logger(payload);
+  //   return `user id : ${payload?.userId}`;
+  // }
+  // @Query(() => [Expense])
+  // getExpense() {
+  //   return Expense.find();
+  // }
+  // @Query(() => Int)
+  // Count() {
+  //   return Expense.count();
+  // }
+
+
+
+  
 }

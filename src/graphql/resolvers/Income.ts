@@ -12,7 +12,8 @@ import { logger } from "../../util/logger";
 import { Main } from "../../util/types";
 import { getConnection } from "typeorm";
 import { User } from "../../models/User";
-import { getMax, getMin, sortArray, incomeArray,getAverage,getTotal } from "../../lib/helpers";
+import { getMax, getMin, sortArray, incomeArray,getAverage,getTotal,getPattern } from "../../lib/helpers";
+import { query } from "express";
 
 //TOdo use dependency injection
 //const incomeObj = new IncomeMainClass([])
@@ -89,10 +90,17 @@ export class IncomeResolver {
     return getAverage(income)
   }
 
-  @Query(()=>Number)
+  @Query(()=>[Number])
   async getSortedIncome (){
     const income: number[] = await this.getIncome();
     return sortArray(income)
+  }
+
+  @Query(()=>[Number])
+  async incomePattern(){
+    const income: number[] = await this.getIncome();
+    return getPattern(income)
+
   }
 
 
