@@ -19,7 +19,7 @@ import {
 } from "type-graphql";
 import { Income } from "../../models/Income";
 import { Expense } from "../../models/Expenses";
-
+import { Saving } from "../../models/Saving";
 @Resolver()
 export class MainQueryResolver {
   @Query(() => Int)
@@ -73,5 +73,15 @@ export class MainQueryResolver {
   async getPattern(@Arg("type") type: string) {
     const value: number[] = await this.getAmountArray(type);
     return getPattern(value);
+  }
+
+  @Query(() => Number)
+  async getBalance() {
+    const incomeArray: number[] = await this.getAmountArray("in");
+    const expenseArray: number[] = await this.getAmountArray("ex");
+    const savingArray: number[] = await this.getAmountArray("sa");
+    return (
+      getTotal(incomeArray) - (getTotal(expenseArray) + getTotal(savingArray))
+    );
   }
 }
