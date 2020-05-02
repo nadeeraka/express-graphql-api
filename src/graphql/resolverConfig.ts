@@ -5,6 +5,8 @@ import { IncomeResolver } from "../graphql/resolvers/Income";
 import { ExpenseResolver } from "../graphql/resolvers/Expense";
 import { MainQueryResolver } from "../graphql/resolvers/MainQueryResolver";
 import { SavingResolver } from "../graphql/resolvers/Saving";
+import {BalanceResolver} from '../graphql/resolvers/Balance'
+
 export const resolvers = [
   UserResolver,
   RegisterResolver,
@@ -13,4 +15,5 @@ export const resolvers = [
   ExpenseResolver,
   MainQueryResolver,
   SavingResolver,
+  BalanceResolver
 ];
