@@ -8,19 +8,19 @@ import { Main } from "../../util/types";
 
 @Resolver()
 export class BalanceResolver {
-  @Mutation(() => Boolean)
-  async saveBalance(@Arg("amount") amount: number) {
-    try {
-      await Balance.insert({
-        amount,
-      });
-    } catch (error) {
-      logger("", true, error);
-      return false;
-    }
+//   @Mutation(() => Boolean)
+//   async saveBalance(@Arg("amount") amount: number) {
+//     try {
+//       await Balance.insert({
+//         amount,
+//       });
+//     } catch (error) {
+//       logger("", true, error);
+//       return false;
+//     }
 
-    return true;
-  }
+//     return true;
+//   }
 
   @Query(() => String)
   check(@Ctx() { payload }: Main) {
