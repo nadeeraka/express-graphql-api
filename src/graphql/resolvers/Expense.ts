@@ -16,7 +16,7 @@ import { Main } from "../../util/types";
 @Resolver()
 export class ExpenseResolver {
   @Mutation(() => Boolean)
-  async saveIncome(
+  async saveExpense(
     @Arg("note") note: string,
     @Arg("expense_type") expense_type: string,
     @Arg("amount") amount: number
@@ -35,18 +35,22 @@ export class ExpenseResolver {
     return true;
   }
 
-  @Query(() => String)
-  @UseMiddleware(isAuth)
-  check(@Ctx() { payload }: Main) {
-    logger(payload);
-    return `user id : ${payload?.userId}`;
-  }
-  @Query(() => [Expense])
-  getExpense() {
-    return Expense.find();
-  }
-  @Query(() => Int)
-  Count() {
-    return Expense.count();
-  }
+  // @Query(() => String)
+  // @UseMiddleware(isAuth)
+  // check(@Ctx() { payload }: Main) {
+  //   logger(payload);
+  //   return `user id : ${payload?.userId}`;
+  // }
+  // @Query(() => [Expense])
+  // getExpense() {
+  //   return Expense.find();
+  // }
+  // @Query(() => Int)
+  // Count() {
+  //   return Expense.count();
+  // }
+
+
+
+  
 }

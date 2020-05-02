@@ -12,6 +12,8 @@ import { logger } from "../../util/logger";
 import { Main } from "../../util/types";
 import { getConnection } from "typeorm";
 import { User } from "../../models/User";
+import { getMax, getMin, sortArray, incomeArray,getAverage,getTotal,getPattern } from "../../lib/helpers";
+import { query } from "express";
 
 //TOdo use dependency injection
 //const incomeObj = new IncomeMainClass([])
@@ -37,16 +39,7 @@ export class IncomeResolver {
 
     return true;
   }
-  //  //  🔖
-  //   @Mutation(() => Boolean)
-  //   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
-  //     await getConnection()
-  //       .getRepository(User)
-  //       .increment({ id: userId }, "tokenVersion", 1);
-
-  //     return true;
-  //   }
-
+  
   @Query(() => String)
   check(@Ctx() { payload }: Main) {
     logger(payload);
@@ -72,16 +65,52 @@ export class IncomeResolver {
   }
   @Query(() => [Number])
   async getAmountsWithValue(amount: number) {
-    const arr = await Income.find();
-    const valArr: number[] = arr.map((data) => data.amount + amount);
-    return valArr;
+    return await (await this.getIncome()).map((a) => a + amount);
   }
   @Query(() => Number)
   async totalIncome() {
-    const arr = await Income.find();
-    const subTotal: number = arr
-      .map((data) => data.amount)
-      .reduce((a, b) => a + b);
-    return subTotal;
+    const income: number[] = await this.getIncome();
+    return  getTotal(income);
   }
+
+  @Query(() => Number)
+  async getLagerIncome() {
+    const income: number[] = await this.getIncome();
+    return getMax(income);
+  }
+  @Query(() => Number)
+  async getMinIncome() {
+    const income: number[] = await this.getIncome();
+    return getMin(income);
+  }
+
+  @Query(()=>Number)
+  async getAverage (){
+    const income: number[] = await this.getIncome();
+    return getAverage(income)
+  }
+
+  @Query(()=>[Number])
+  async getSortedIncome (){
+    const income: number[] = await this.getIncome();
+    return sortArray(income)
+  }
+
+  @Query(()=>[Number])
+  async incomePattern(){
+    const income: number[] = await this.getIncome();
+    return getPattern(income)
+
+  }
+
+
 }
+//  //  🔖
+  //   @Mutation(() => Boolean)
+  //   async revokeRefreshTokensForUser(@Arg("userId", () => Int) userId: number) {
+  //     await getConnection()
+  //       .getRepository(User)
+  //       .increment({ id: userId }, "tokenVersion", 1);
+
+  //     return true;
+  //   }

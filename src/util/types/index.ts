@@ -2,6 +2,9 @@
 import "reflect-metadata";
 import express from "express";
 import { HttpError } from "routing-controllers";
+import { type } from "os";
+import { Income } from "src/models/Income";
+import { Expense } from "src/models/Expenses";
 
 export type  Resolvers = (parent:any, args:any,context:any, info:any)=>any
 
@@ -29,3 +32,4 @@ export interface ResolverMap {
     [key:string]:Resolvers
   }
 }
+//type Type: Income | Expense 
