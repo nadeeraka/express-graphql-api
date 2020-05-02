@@ -1,17 +1,6 @@
-import {
-  Arg,
-  Int,
-  Mutation,
-  Query,
-  Resolver,
-  registerEnumType,
-  UseMiddleware,
-  Ctx,
-} from "type-graphql";
-import { logger } from "../../util/logger";
+import { Arg, Mutation, Resolver } from "type-graphql";
 import { Expense } from '../../models/Expenses';
-import { isAuth } from "../../util/auth/isAuth";
-import { Main } from "../../util/types";
+import { logger } from "../../util/logger";
 
 @Resolver()
 export class ExpenseResolver {
