@@ -1,4 +1,16 @@
 import { Income } from "../../models/Income";
+import { Expense } from "../../models/Expenses";
+export const getObj = (str: string) => {
+  switch (str) {
+    case "in":
+      return Income;
+
+    case "ex":
+      return Expense;
+    default:
+      return Expense;
+  }
+};
 
 export const incomeArray = async () => await Income.find();
 export const sortArray = (arr: number[]) => {

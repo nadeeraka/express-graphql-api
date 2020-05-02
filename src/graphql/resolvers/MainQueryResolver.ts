@@ -6,6 +6,7 @@ import {
   getAverage,
   getTotal,
   getPattern,
+  getObj,
 } from "../../lib/helpers";
 import {
   Arg,
@@ -19,69 +20,58 @@ import {
 import { Income } from "../../models/Income";
 import { Expense } from "../../models/Expenses";
 
-const getObj = (str:string) => {
-  switch (str) {
-    case "in":
-      return Income;
-
-    case "ex":
-      return Expense;
-      default:
-      return Expense;
-
-  }
-};
-
 @Resolver()
 export class MainQueryResolver {
   @Query(() => Int)
-  async getTotal(@Arg("type") type: string,) {
-      
+  async getCount(@Arg("type") type: string) {
     return await getObj(type).count();
   }
   @Query(() => [Number])
-  async getIncome() {
-    const incomeArray = Income.find();
-    const arr = await Income.find();
+  async getAmountArray(@Arg("type") type: string) {
+    //const incomeArray = getObj(type).find();
+    const arr = await getObj(type).find();
     const valArr: number[] = arr.map((data) => data.amount);
     return valArr;
   }
   @Query(() => [Number])
-  async getAmountsWithValue(amount: number) {
-    return await (await this.getIncome()).map((a) => a + amount);
+  async getAmountsWithValue(
+    @Arg("type") type: string,
+    @Arg("amount") amount: number
+  ) {
+    return await (await this.getAmountArray(type)).map((a) => a + amount);
   }
   @Query(() => Number)
-  async totalIncome() {
-    const income: number[] = await this.getIncome();
-    return getTotal(income);
-  }
-
-  @Query(() => Number)
-  async getLagerIncome() {
-    const income: number[] = await this.getIncome();
-    return getMax(income);
-  }
-  @Query(() => Number)
-  async getMinIncome() {
-    const income: number[] = await this.getIncome();
-    return getMin(income);
+  async getTotal(@Arg("type") type: string) {
+    const value: number[] = await this.getAmountArray(type);
+    return getTotal(value);
   }
 
   @Query(() => Number)
-  async getAverage() {
-    const income: number[] = await this.getIncome();
+  async getMaxValue(@Arg("type") type: string) {
+    const value: number[] = await this.getAmountArray(type);
+    return getMax(value);
+  }
+  @Query(() => Number)
+  async getMinValue(@Arg("type") type: string) {
+    const value: number[] = await this.getAmountArray(type);
+    return getMin(value);
+  }
+
+  @Query(() => Number)
+  async getAverage(@Arg("type") type: string) {
+    const income: number[] = await this.getAmountArray(type);
     return getAverage(income);
   }
 
   @Query(() => [Number])
-  async getSortedIncome() {
-    const income: number[] = await this.getIncome();
-    return sortArray(income);
+  async getSortedArray(@Arg("type") type: string) {
+    const value: number[] = await this.getAmountArray(type);
+    return sortArray(value);
   }
 
   @Query(() => [Number])
-  async incomePattern() {
-    const income: number[] = await this.getIncome();
-    return getPattern(income);
+  async getPattern(@Arg("type") type: string) {
+    const value: number[] = await this.getAmountArray(type);
+    return getPattern(value);
   }
 }
