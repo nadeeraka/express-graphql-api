@@ -1,5 +1,6 @@
 import { Income } from "../../models/Income";
 import { Expense } from "../../models/Expenses";
+import { Saving } from "../../models/Saving";
 export const getObj = (str: string) => {
   switch (str) {
     case "in":
@@ -7,6 +8,9 @@ export const getObj = (str: string) => {
 
     case "ex":
       return Expense;
+    case "sa":
+      return Saving;
+
     default:
       return Expense;
   }
