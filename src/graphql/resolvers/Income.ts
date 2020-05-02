@@ -77,12 +77,25 @@ export class IncomeResolver {
     const income: number[] = await this.getIncome();
     return getMax(income);
   }
+  @Query(() => Number)
+  async getMinIncome() {
+    const income: number[] = await this.getIncome();
+    return getMin(income);
+  }
 
   @Query(()=>Number)
   async getAverage (){
     const income: number[] = await this.getIncome();
     return getAverage(income)
   }
+
+  @Query(()=>Number)
+  async getSortedIncome (){
+    const income: number[] = await this.getIncome();
+    return sortArray(income)
+  }
+
+
 }
 //  //  🔖
   //   @Mutation(() => Boolean)

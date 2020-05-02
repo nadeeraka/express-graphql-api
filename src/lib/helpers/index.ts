@@ -30,5 +30,16 @@ export const getAverage = (arr: number[]): number => {
   if (arr.length < 0) {
     return -1;
   }
-  return (getTotal(arr) / arr.length) 
+  return getTotal(arr) / arr.length;
+};
+
+export const getPattern = (arr: number[]): number[] => {
+  let pattern: number[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const element = arr[i];
+    if (arr[i + 1]) {
+      pattern.push(arr[i + 1] - element);
+    }
+  }
+  return pattern;
 };
