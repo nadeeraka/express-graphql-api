@@ -5,3 +5,8 @@ https://github.com/MichalLytek/type-graphql/blob/master/docs/enums.md
 
 modified  revoke 
  
+
+ use db util to query
+ 
+ pagination
+ 

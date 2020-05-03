@@ -20,6 +20,7 @@ import {
 import { Income } from "../../models/Income";
 import { Expense } from "../../models/Expenses";
 import { Saving } from "../../models/Saving";
+import {getPagination} from '../../util/pagination'
 @Resolver()
 export class MainQueryResolver {
   @Query(() => Int)
